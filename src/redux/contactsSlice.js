@@ -1,3 +1,5 @@
+import { createSlice } from "@reduxjs/toolkit"
+
 const INITIAL_STATE = {
   contacts: {
 		items: [
@@ -9,40 +11,19 @@ const INITIAL_STATE = {
 	},
 }
 
-export const contactsSlice = (state = INITIAL_STATE, action) => {
-  switch (action.type) {
-    case "contacts/add": {
-      return {
-        ...state,
-        contacts: {
-          items: [action.payload, ...state.contacts.items]
-        } 
-      }
+const profileSlice = createSlice({
+  name: "contacts",
+  initialState: INITIAL_STATE,
+  reducers: {
+    addContact: (state, action) => {
+      state.contacts.items.unshift(action.payload);
+    },
+    deleteContact: (state, action) => {
+      state.contacts.items = state.contacts.items.filter((profile) => profile.id !== action.payload)
     }
-    case "contacts/delete": {
-      return {
-        ...state,
-        contacts: {
-          items: state.contacts.items.filter(profile => profile.id !== action.payload)
-        } 
-     }
-    }
-    default:
-      return state;
   }
-}
+})
 
+export const contactsSlice = profileSlice.reducer;
+export const {addContact, deleteContact} = profileSlice.actions
 
-export const addContact = (payload) => {
-  return {
-    type: "contacts/add",
-    payload
-  }
-}
-
-export const deleteContact = (profileId) => {
-  return {
-    type: "contacts/delete",
-    payload: profileId
-  }
-}

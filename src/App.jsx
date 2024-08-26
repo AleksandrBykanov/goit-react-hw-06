@@ -5,13 +5,13 @@ import { nanoid } from "nanoid";
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addContact, deleteContact } from "./redux/contactsSlice";
-import { filtersName } from "./redux/filtersSlice";
+import { filters } from "./redux/filtersSlice";
 
 
 
 function App() {
   const dispatch = useDispatch();
-  
+
   const selectContacts = useSelector((state)=> state.contacts.contacts.items);
   const selectNameFilter = useSelector((state)=>state.filters.filters.name)
 
@@ -26,7 +26,7 @@ function App() {
 
   const filter = (e) => {
     const filterValue = e.target.value;
-    const action = filtersName(filterValue);
+    const action = filters(filterValue);
     dispatch(action)
   }
 
