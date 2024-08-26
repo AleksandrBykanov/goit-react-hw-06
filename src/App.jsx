@@ -5,7 +5,7 @@ import { nanoid } from "nanoid";
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addContact, deleteContact } from "./redux/contactsSlice";
-import { filters } from "./redux/filtersSlice";
+import { changeFilter } from "./redux/filtersSlice";
 
 
 
@@ -26,7 +26,7 @@ function App() {
 
   const filter = (e) => {
     const filterValue = e.target.value;
-    const action = filters(filterValue);
+    const action = changeFilter(filterValue);
     dispatch(action)
   }
 
