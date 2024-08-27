@@ -29,11 +29,12 @@
   height: 25px;
   margin: 0 auto;
   border-radius: 10px;
+  color: white;
   border: none;
-  background-color: rgba(168, 168, 168, 0.63);
+  background-color: orangered;
   cursor: pointer;
   &:hover {
-    background-color: rgba(104, 104, 104, 0.671);
+    background-color: rgba(255, 68, 0, 0.637);
   }
 }
 
